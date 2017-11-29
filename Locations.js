@@ -31,6 +31,9 @@
 						} else {
 							if (userText === "inventory") {
 							listInventory ();
+							} else {
+								if (userText === "open") {
+									rescueDog ();					
                  } else {
                      ErrorMessage();
 				 }
@@ -38,6 +41,7 @@
              }
          }
      }
+ }
  }
  }
  }
@@ -57,13 +61,13 @@
 			}
 	}
 	
-	var locationZero = new Locations (0, "Main Entrance", "1. You enter Donnelly Hall in a panic realizing your dog, Donnelly, has gotten loose and made his way to his favorite building. You must find him!", "map", 1, 4,5,10);
+	var locationZero = new Locations (0, "Main Entrance", "1. You enter Donnelly Hall in a panic realizing your dog, Donnelly, has gotten loose and made his way to his favorite building. You must find him! Need directions? enter take to grab a map", "map", 1, 4,5,10);
 	var locationOne = new Locations (1, "Security Office", "2. You are at security, they say they saw your dog but can't say where he is for sure since its a circular building...Security offers you a key to all the rooms (enter take to pick up key)", "key", 2,0,-1,-1);
 	var locationTwo = new Locations (2, "Camera Room", "3. You rush to the back room to check the security cameras and see your dog running in circles", null, -1,1,-1,-1 );
 	var locationThree = new Locations (3, "Fashion Lab", "8.You are the fashion lab and see nothing but clothes. Need a new coat? enter take.", "coat",-1,-1,10,7 );
 	var locationFour = new Locations (4, "Outside Building", "You leave the building. Try again.", null, 0,-1,-1,-1); 
 	var locationFive = new Locations (5, "Chemistry Lab", "4.You head down to the chemistry lab and hear barking", null,-1,-1,9,0);
-	var locationSix = new Locations (6, " Found Dog", "6. Donnelly! You found your dog, sitting by the bathroom.", null, -1,-1,-1,-1);
+	var locationSix = new Locations (6, " Found Dog", "6. Donnelly! You found your dog, except hes locked in a cage...if you have the key, let him out!(enter open IF you have the key) If you do not have the key you must restart.", null, -1,-1,-1,-1);
 	var locationSeven = new Locations (7, " DN Cafe", "9. You are at the DN Cafe, maybe Donnelly was attracted to the food?", null,-1,-1,3,8);
 	var locationEight = new Locations (8, "Sub Line", "10. Nothing but subs in here... press take to grab a quick snack", "hoagie", -1,-1,7,-1);
 	var locationNine = new Locations (9, "Restroom", "5. You check the restroom to see if your dog is taking a drink from the toliet", null, -1,-1,6,5);
@@ -207,6 +211,26 @@ console.log(inventory);
 		location[currentLoc].check = 1;
  }
  }
+ 
+ function rescueDog () {
+	 if (hoagie.check !== 1) {
+		 document.getElementById("maintext").value = "You need food to bribe your dog, restart and find that hoagie";
+ }else{
+	 if (currentLoc==6 && key.check==1) {
+		 document.getElementById("maintext").value = "You have rescued your dog and won the game";
+	 }
+ }
+ }
+ 
+ //Refresh if you lose!
+ function refresh () {
+	location.reload();
+ }
+ //function win () {
+	 //if (currentLoc == 6) {
+		// alert ( "You have found your dog and won the game! Congrats.")
+	 //}
+ //}
  
  //Updating the text box
  function UpdateDisplay(msg) {
