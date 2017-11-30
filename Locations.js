@@ -67,7 +67,7 @@
 	var locationThree = new Locations (3, "Fashion Lab", "8.You are the fashion lab and see nothing but clothes. Need a new coat? enter take.", "coat",-1,-1,10,7 );
 	var locationFour = new Locations (4, "Outside Building", "You leave the building. Try again.", null, 0,-1,-1,-1); 
 	var locationFive = new Locations (5, "Chemistry Lab", "4.You head down to the chemistry lab and hear barking", null,-1,-1,9,0);
-	var locationSix = new Locations (6, " Found Dog", "6. Donnelly! You found your dog, except hes locked in a cage...if you have the key, let him out!(enter open IF you have the key) If you do not have the key you must restart.", null, -1,-1,-1,-1);
+	var locationSix = new Locations (6, " Found Dog", "6. Donnelly! You found your dog, except hes locked in a cage...if you have the key, let him out!(enter open to see if you have what you need to save your dog)", null, -1,-1,-1,-1);
 	var locationSeven = new Locations (7, " DN Cafe", "9. You are at the DN Cafe, maybe Donnelly was attracted to the food?", null,-1,-1,3,8);
 	var locationEight = new Locations (8, "Sub Line", "10. Nothing but subs in here... press take to grab a quick snack", "hoagie", -1,-1,7,-1);
 	var locationNine = new Locations (9, "Restroom", "5. You check the restroom to see if your dog is taking a drink from the toliet", null, -1,-1,6,5);
@@ -174,6 +174,7 @@ console.log(inventory);
 	console.log(temp);
 	startup();
 	scoring ();
+	scoreCheck ();
 	}
  }
  function btnSouth() {
@@ -183,6 +184,7 @@ console.log(inventory);
 	console.log(temp);
 	startup();
 	scoring();
+	scoreCheck ();
 	}
  }
  function btnEast() {
@@ -192,6 +194,7 @@ console.log(inventory);
 	currentLoc = temp;
 	startup();
 	scoring ();
+	scoreCheck ();
 	}
  }
  function btnWest() {
@@ -201,6 +204,7 @@ console.log(inventory);
 	currentLoc = temp;
 	startup();
 	scoring ();
+	scoreCheck ();
 	}
  }
  
@@ -210,6 +214,20 @@ console.log(inventory);
 		document.getElementById("scorebox").value = "Score:" + score;
 		location[currentLoc].check = 1;
  }
+ }
+ function scoreCheck () {
+	if (currentLoc==9 && score<40) {
+		document.getElementById("btnEast").disabled = false;
+        document.getElementById("btnWest").disabled = true;
+        document.getElementById("btnSouth").disabled = false;
+        document.getElementById("btnNorth").disabled = false;
+		alert ("You need to collect some more points before you can head west");
+	}else{
+		document.getElementById("btnEast").disabled = false;
+        document.getElementById("btnWest").disabled = false;
+        document.getElementById("btnSouth").disabled = false;
+        document.getElementById("btnNorth").disabled = false;
+	}
  }
  
  //Puzzle Structure to win game
