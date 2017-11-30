@@ -212,12 +212,15 @@ console.log(inventory);
  }
  }
  
+ //Puzzle Structure to win game
  function rescueDog () {
 	 if (hoagie.check !== 1) {
 		 document.getElementById("maintext").value = "You need food to bribe your dog, restart and find that hoagie";
+		 alert ("You must not have everything you need. Therefore, you lose! Try Again.");
  }else{
 	 if (currentLoc==6 && key.check==1) {
 		 document.getElementById("maintext").value = "You have rescued your dog and won the game";
+		 alert ("You have won! Hooray!")
 	 }
  }
  }
